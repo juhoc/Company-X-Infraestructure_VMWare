@@ -1,5 +1,5 @@
 ---
-- name: Tareas por bloques - Validacion formato CRQ o ICR
+- name: Tasks by blocks - ID Helix format validation
   block:
     - set_fact:
         idhelix: "{{ idcrqinc | trim }}"
@@ -20,7 +20,7 @@
       {% if tasks == 'Create_VMware_Machine' %}
       ['ambientar/vboxvm','mensajes/inicio/vboxvm','crear/vm/vboxvm','crear/clone/vboxvm','crear/disk/vboxvm','crear/net/vboxvm','prender/vboxvm','validar/vboxvm','mensajes/final/vboxvm','api/vboxvm','configurar/nombre/vboxvm']
       {% elif tasks == 'Test_vars_VMware_Machine' %}
-      ['prueba/vboxvm']
+      ['tests/varsvm']
       {% else %}
       ['No_selecciono_ninguna_tarea']
       {% endif %}
