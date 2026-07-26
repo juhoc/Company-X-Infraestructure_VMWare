@@ -17,17 +17,9 @@
 
 - set_fact:
     run_playbook: |
-      {% if tarea == 'Crear_VitualBox_Machine' %}
+      {% if tasks == 'Create_VMware_Machine' %}
       ['ambientar/vboxvm','mensajes/inicio/vboxvm','crear/vm/vboxvm','crear/clone/vboxvm','crear/disk/vboxvm','crear/net/vboxvm','prender/vboxvm','validar/vboxvm','mensajes/final/vboxvm','api/vboxvm','configurar/nombre/vboxvm']
-      {% elif tarea == 'Desconectar_VitualBox_Machine' %}
-      ['desconectar/net/vboxvm']
-      {% elif tarea == 'Conectar_VitualBox_Machine' %}
-      ['ambientar/vboxvm','conectar/vboxvm']
-      {% elif tarea == 'Instantanea_VitualBox_Machine' %}
-      ['instantanea/vboxvm']
-      {% elif tarea == 'Borrar_VitualBox_Machine' %}
-      ['borrar/vm/vboxvm']
-      {% elif tarea == 'Prueba_VitualBox_Machine' %}
+      {% elif tasks == 'Test_vars_VMware_Machine' %}
       ['prueba/vboxvm']
       {% else %}
       ['No_selecciono_ninguna_tarea']
@@ -39,13 +31,13 @@
     that:
       - "'No_selecciono_ninguna_tarea' not in run_playbook"
     fail_msg: "run_playbook"
-    success_msg: "Ha seleccionado: {{ run_playbook | replace('\n', '') }}"
+    success_msg: "Ha seleccionado la tarea: {{ run_playbook | replace('\n', '') }}"
   run_once: true
   delegate_to: localhost
 
-- name: Inicia tareas {{ run_playbook }}
-  include_tasks: "{{ tareas }}.yml"
+- name: Start the task {{ run_playbook }}
+  include_tasks: "{{ task }}.yml"
   loop: "{{ run_playbook }}"
   loop_control:
-    loop_var: tareas
+    loop_var: task
 
