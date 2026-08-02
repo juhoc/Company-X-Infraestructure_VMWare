@@ -5,7 +5,7 @@
 - name: Prueba salida 0  eco de id helix
   debug:
     msg: 
-      - "{{ vmname }}.bvm.bluecare.kyndryl.net"
+      - "{{ idhelix }}"
 
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
