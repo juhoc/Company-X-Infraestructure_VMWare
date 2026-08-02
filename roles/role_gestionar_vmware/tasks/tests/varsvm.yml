@@ -32,7 +32,7 @@
 - name: Prueba salida 3 eco de red vmware Linux o Windows
   debug:
     msg: 
-      - "{{ vmonet }}"
+      - "{{ vmnet }}"
 
 - name: Prueba entrada 4 eco de version os Linux o Windows
   set_fact:
