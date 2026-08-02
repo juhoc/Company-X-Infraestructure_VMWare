@@ -1,102 +1,111 @@
-- name: Prueba 1 agrupando eco de recursos
+- name: Prueba entrada 0 eco de id helix
   set_fact:
-    vmsource: |
-      {% if 'small' in vmsources %}
-      1,1,55
-      {% elif 'medium' in vmsources %}
-      1,2,55
-      {% elif 'large' in vmsources %}
-      2,2,55
-      {% elif 'xlarge' in vmsources %}
-      2,3,55
-      {% endif %}
+    idhelix: "{{ idcrqinc | trim }}"
 
-- name: Prueba 2 de varibles 1
-  debug:
-    msg: 
-      - "{{ idcrqinc }}"
-      - "{{ vmname }}"
-      - "{{ vmostype }}"
-      - "{{ vmsource | trim }}"
-      - "{{ vmnets | trim }}"
-
-- name: Prueba 1 agrupando eco tipo de ambiente
-  set_fact:
-    vmenv: |
-      {% if 'vp' in vmname %}
-      Produccion
-      {% elif 'vd' in vmname %}
-      Desarrollo
-      {% elif 'vlo' in vmname %}
-      Liga_oculta
-      {% endif %}
-    vmtier: |
-      {% if 'vp' in vmname %}
-      PR
-      {% elif 'vd' in vmname %}
-      EP
-      {% elif 'vlo' in vmname %}
-      LO
-      {% endif %}    
-
-- name: Prueba 3 agrupando eco de recursos
-  set_fact:
-    vmcpu: "{{ vmsource.split(',')[0] | trim }}"
-    vmmem: "{{ vmsource.split(',')[1] | trim }}"
-    vmdsk: "{{ vmsource.split(',')[2] | trim }}"
-    vmnet: "{{ vmnets.split('_')[0] }}"
-
-- name: Prueba 4 de varibles 2
+- name: Prueba salida 0  eco de id helix
   debug:
     msg: 
       - "{{ vmname }}.bvm.bluecare.kyndryl.net"
-      - "{{ vmostype }}"
-      - "{{ vmcpu | trim }}"
-      - "{{ vmmem | int * 1024 }}"
-      - "{{ vmdsk | int * 1025 }}"
-      - "{{ vmenv | trim }}"
-      - "{{ vmtier | trim }}"
-      - "{{ 'sd_data00' if 'RedHat' in vmostype else 'hd_data00' }}"
-      - "{{ vmdstoresso }}"
-      - "{{ vmdstoredsk }}"
-      - "{{ vmdstoretpt }}"
-      - "{{ vmnet }}"
-      - "{{ '/usr/bin/python3.9' if 'RedHat9' in vmostype else '/usr/bin/python3.8' }}"
 
-- name: Prueba 5 de ejecucio shell con recursos
-  shell: |
-      {% if 'Tarjeta_puente_internet' in vmnets %}
-      echo "Tarjeta_puente_internet"
-      {% elif 'Tarjeta_aislada_sin_internete' in vmnets %}
-      echo "Tarjeta_aislada_sin_internete"
-      {% elif 'Tarjeta_nat_internet_aislada' in vmnets %}
-      echo "Tarjeta_nat_internet_aislada"
-      {% elif 'Tarjetas_puente_aislada' in vmnets %}
-      echo "Tarjetas_puente_aislada"
-      {% elif 'Tarjetas_aislada_puente' in vmnets %}
-      echo "Tarjetas_aislada_puente"
-      {% elif 'Tarjetas_nat_aislada' in vmnets %}
-      echo "Tarjetas_nat_aislada"
-      {% elif 'Tarjetas_aislada_nat' in vmnets %}
-      echo "Tarjetas_aislada_nat"
-      {% elif 'Tarjetas_aislada_aislada' in vmnets %}
-      echo "Tarjetas_aislada_aislada"
-      {% endif %}
-
-- name: Prueba 6 de ejecucio shell con recursos
-  shell: |
-      {% if 'Tarjeta' == vmnet %}
-      echo "Tarjeta_numero_0"
-      {% else %}
-      echo "Tarjeta_numero_0"
-      echo "Tarjeta_numero_1"
-      {% endif %}
-
-- name: Prueba 1 de mensaje con condicion
-  debug:
-    msg: |
-      {% if 'Tarjeta' == vmnet %}
-      - "Una Tarjeta"
-      {% else %}
-      - "Dos Tarjetas"
-      {% endif %}
+#- name: Prueba 1 agrupando eco de recursos
+#  set_fact:
+#    vmsource: |
+#      {% if 'small' in vmsources %}
+#      1,1,55
+#      {% elif 'medium' in vmsources %}
+#      1,2,55
+#      {% elif 'large' in vmsources %}
+#      2,2,55
+#      {% elif 'xlarge' in vmsources %}
+#      2,3,55
+#      {% endif %}
+#
+#- name: Prueba 2 de varibles 1
+#  debug:
+#    msg: 
+#      - "{{ idcrqinc }}"
+#      - "{{ vmname }}"
+#      - "{{ vmostype }}"
+#      - "{{ vmsource | trim }}"
+#      - "{{ vmnets | trim }}"
+#
+#- name: Prueba 1 agrupando eco tipo de ambiente
+#  set_fact:
+#    vmenv: |
+#      {% if 'vp' in vmname %}
+#      Produccion
+#      {% elif 'vd' in vmname %}
+#      Desarrollo
+#      {% elif 'vlo' in vmname %}
+#      Liga_oculta
+#      {% endif %}
+#    vmtier: |
+#      {% if 'vp' in vmname %}
+#      PR
+#      {% elif 'vd' in vmname %}
+#      EP
+#      {% elif 'vlo' in vmname %}
+#      LO
+#      {% endif %}    
+#
+#- name: Prueba 3 agrupando eco de recursos
+#  set_fact:
+#    vmcpu: "{{ vmsource.split(',')[0] | trim }}"
+#    vmmem: "{{ vmsource.split(',')[1] | trim }}"
+#    vmdsk: "{{ vmsource.split(',')[2] | trim }}"
+#    vmnet: "{{ vmnets.split('_')[0] }}"
+#
+#- name: Prueba 4 de varibles 2
+#  debug:
+#    msg: 
+#      - "{{ vmname }}.bvm.bluecare.kyndryl.net"
+#      - "{{ vmostype }}"
+#      - "{{ vmcpu | trim }}"
+#      - "{{ vmmem | int * 1024 }}"
+#      - "{{ vmdsk | int * 1025 }}"
+#      - "{{ vmenv | trim }}"
+#      - "{{ vmtier | trim }}"
+#      - "{{ 'sd_data00' if 'RedHat' in vmostype else 'hd_data00' }}"
+#      - "{{ vmdstoresso }}"
+#      - "{{ vmdstoredsk }}"
+#      - "{{ vmdstoretpt }}"
+#      - "{{ vmnet }}"
+#      - "{{ '/usr/bin/python3.9' if 'RedHat9' in vmostype else '/usr/bin/python3.8' }}"
+#
+#- name: Prueba 5 de ejecucio shell con recursos
+#  shell: |
+#      {% if 'Tarjeta_puente_internet' in vmnets %}
+#      echo "Tarjeta_puente_internet"
+#      {% elif 'Tarjeta_aislada_sin_internete' in vmnets %}
+#      echo "Tarjeta_aislada_sin_internete"
+#      {% elif 'Tarjeta_nat_internet_aislada' in vmnets %}
+#      echo "Tarjeta_nat_internet_aislada"
+#      {% elif 'Tarjetas_puente_aislada' in vmnets %}
+#      echo "Tarjetas_puente_aislada"
+#      {% elif 'Tarjetas_aislada_puente' in vmnets %}
+#      echo "Tarjetas_aislada_puente"
+#      {% elif 'Tarjetas_nat_aislada' in vmnets %}
+#      echo "Tarjetas_nat_aislada"
+#      {% elif 'Tarjetas_aislada_nat' in vmnets %}
+#      echo "Tarjetas_aislada_nat"
+#      {% elif 'Tarjetas_aislada_aislada' in vmnets %}
+#      echo "Tarjetas_aislada_aislada"
+#      {% endif %}
+#
+#- name: Prueba 6 de ejecucio shell con recursos
+#  shell: |
+#      {% if 'Tarjeta' == vmnet %}
+#      echo "Tarjeta_numero_0"
+#      {% else %}
+#      echo "Tarjeta_numero_0"
+#      echo "Tarjeta_numero_1"
+#      {% endif %}
+#
+#- name: Prueba 1 de mensaje con condicion
+#  debug:
+#    msg: |
+#      {% if 'Tarjeta' == vmnet %}
+#      - "Una Tarjeta"
+#      {% else %}
+#      - "Dos Tarjetas"
+#      {% endif %}
