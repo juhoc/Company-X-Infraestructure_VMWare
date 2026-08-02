@@ -2,10 +2,38 @@
   set_fact:
     idhelix: "{{ idcrqinc | trim }}"
 
-- name: Prueba salida 0  eco de id helix
+- name: Prueba salida 0 eco de id helix
   debug:
     msg: 
       - "{{ idhelix }}"
+
+- name: Prueba entrada 1 eco de id helix
+  set_fact:
+    vmos: "{{ platformvm | trim }}"
+
+- name: Prueba salida 1 eco de id helix
+  debug:
+    msg: 
+      - "{{ vmos }}"
+
+- name: Prueba entrada 2 eco de id helix
+  set_fact:
+    vmosv: "{{ osversionvm | trim }}"
+
+- name: Prueba salida 3 eco de id helix
+  debug:
+    msg: 
+      - "{{ vmosv }}"
+
+- name: Prueba entrada 3 eco de id helix
+  set_fact:
+    vmn: "{{ namevm | trim }}"
+
+- name: Prueba salida 3 eco de id helix
+  debug:
+    msg: 
+      - "{{ vmn }}"
+
 
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
@@ -19,7 +47,7 @@
 #      {% elif 'xlarge' in vmsources %}
 #      2,3,55
 #      {% endif %}
-#
+
 #- name: Prueba 2 de varibles 1
 #  debug:
 #    msg: 
@@ -28,7 +56,7 @@
 #      - "{{ vmostype }}"
 #      - "{{ vmsource | trim }}"
 #      - "{{ vmnets | trim }}"
-#
+
 #- name: Prueba 1 agrupando eco tipo de ambiente
 #  set_fact:
 #    vmenv: |
@@ -47,14 +75,14 @@
 #      {% elif 'vlo' in vmname %}
 #      LO
 #      {% endif %}    
-#
+
 #- name: Prueba 3 agrupando eco de recursos
 #  set_fact:
 #    vmcpu: "{{ vmsource.split(',')[0] | trim }}"
 #    vmmem: "{{ vmsource.split(',')[1] | trim }}"
 #    vmdsk: "{{ vmsource.split(',')[2] | trim }}"
 #    vmnet: "{{ vmnets.split('_')[0] }}"
-#
+
 #- name: Prueba 4 de varibles 2
 #  debug:
 #    msg: 
@@ -71,7 +99,7 @@
 #      - "{{ vmdstoretpt }}"
 #      - "{{ vmnet }}"
 #      - "{{ '/usr/bin/python3.9' if 'RedHat9' in vmostype else '/usr/bin/python3.8' }}"
-#
+
 #- name: Prueba 5 de ejecucio shell con recursos
 #  shell: |
 #      {% if 'Tarjeta_puente_internet' in vmnets %}
@@ -91,7 +119,7 @@
 #      {% elif 'Tarjetas_aislada_aislada' in vmnets %}
 #      echo "Tarjetas_aislada_aislada"
 #      {% endif %}
-#
+
 #- name: Prueba 6 de ejecucio shell con recursos
 #  shell: |
 #      {% if 'Tarjeta' == vmnet %}
@@ -100,7 +128,7 @@
 #      echo "Tarjeta_numero_0"
 #      echo "Tarjeta_numero_1"
 #      {% endif %}
-#
+
 #- name: Prueba 1 de mensaje con condicion
 #  debug:
 #    msg: |
