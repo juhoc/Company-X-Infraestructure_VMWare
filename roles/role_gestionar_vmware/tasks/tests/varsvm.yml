@@ -65,7 +65,7 @@
 - name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux O Windows
   debug:
     msg: 
-      - "ovftool {{ vmsclones }}{{ vmosv }}/{{ vmosv }}.ovf {{ vmscreate }}{{ vmos }}/{{ vmn }}"
+      - "ovftool {{ vmsclones }}{{ vmosv }}/{{ vmosv }}.ovf {{ vmscreate }}{{ vmos }}/{{ vmn }}.vwx"
 
 
 #- name: Prueba 1 agrupando eco de recursos
