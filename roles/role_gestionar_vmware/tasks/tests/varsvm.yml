@@ -61,6 +61,13 @@
     msg: 
       - "{{ vmrscs }}"
 
+
+- name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux O Windows
+  debug:
+    msg: 
+      - "ovftool {{ vmrscs }}{{ vmosv }} {{ vmscreate }}{{ vmos }}/{{ vmn }}"
+
+
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
 #    vmsource: |

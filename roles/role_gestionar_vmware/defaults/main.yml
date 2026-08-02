@@ -1,1 +1,3 @@
 ---
+vmsclones: "/application/vmware/workstation/ovf/"
+vmscreate: "/application/vmware/workstation/vms/"
