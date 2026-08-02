@@ -17,9 +17,9 @@
 
 - set_fact:
     run_playbook: |
-      {% if tasks == 'Create_VMware_Machine' %}
+      {% if actions == 'Create_VMware_Machine' %}
       ['ambientar/vboxvm','mensajes/inicio/vboxvm','crear/vm/vboxvm','crear/clone/vboxvm','crear/disk/vboxvm','crear/net/vboxvm','prender/vboxvm','validar/vboxvm','mensajes/final/vboxvm','api/vboxvm','configurar/nombre/vboxvm']
-      {% elif tasks == 'Test_vars_VMware_Machine' %}
+      {% elif actions == 'Test_vars_VMware_Machine' %}
       ['tests/varsvm']
       {% else %}
       ['No_selecciono_ninguna_tarea']
@@ -36,8 +36,8 @@
   delegate_to: localhost
 
 - name: Start the task {{ run_playbook }}
-  include_tasks: "{{ task }}.yml"
+  include_tasks: "{{ action }}.yml"
   loop: "{{ run_playbook }}"
   loop_control:
-    loop_var: task
+    loop_var: action
 
