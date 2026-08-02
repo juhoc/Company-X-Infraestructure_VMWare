@@ -7,33 +7,59 @@
     msg: 
       - "{{ idhelix }}"
 
-- name: Prueba entrada 1 eco de id helix
+- name: Prueba entrada 1 eco de plataform os Linux o Windows
   set_fact:
     vmos: "{{ platformvm | trim }}"
 
-- name: Prueba salida 1 eco de id helix
+- name: Prueba salida 1 eco de plataform os Linux o Windows
   debug:
     msg: 
       - "{{ vmos }}"
 
-- name: Prueba entrada 2 eco de id helix
-  set_fact:
-    vmosv: "{{ osversionvm | trim }}"
-
-- name: Prueba salida 3 eco de id helix
-  debug:
-    msg: 
-      - "{{ vmosv }}"
-
-- name: Prueba entrada 3 eco de id helix
+- name: Prueba entrada 2 eco de nombre vmware Linux o Windows
   set_fact:
     vmn: "{{ namevm | trim }}"
 
-- name: Prueba salida 3 eco de id helix
+- name: Prueba salida 2 eco de nombre vmware Linux o Windows
   debug:
     msg: 
       - "{{ vmn }}"
 
+- name: Prueba entrada 3 eco de red vmware Linux o Windows
+  set_fact:
+    vmnet: "{{ networkvm | trim }}"
+
+- name: Prueba salida 3 eco de red vmware Linux o Windows
+  debug:
+    msg: 
+      - "{{ vmonet }}"
+
+- name: Prueba entrada 4 eco de version os Linux o Windows
+  set_fact:
+    vmosv: "{{ osversionvm | trim }}"
+
+- name: Prueba salida 4 eco de version os Linux o Windows
+  debug:
+    msg: 
+      - "{{ vmosv }}"
+
+- name: Prueba entrada 5 eco de recursos vmware Linux o Windows
+  set_fact:
+    vmrscs: |
+      {% if 'Small' in vmresources %}
+      1,1,55
+      {% elif 'Medium' in vmresources %}
+      1,2,55
+      {% elif 'Large' in vmresources %}
+      2,2,55
+      {% elif 'Xlarge' in vmresources %}
+      2,3,55
+      {% endif %}
+
+- name: Prueba salida 5 eco de recursos vmware Linux o Windows
+  debug:
+    msg: 
+      - "{{ vmrscs }}"
 
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
