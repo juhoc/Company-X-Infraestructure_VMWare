@@ -40,4 +40,3 @@
   loop: "{{ run_playbook }}"
   loop_control:
     loop_var: action
-
