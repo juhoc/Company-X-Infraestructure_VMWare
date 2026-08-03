@@ -62,6 +62,13 @@
     vmmem: "{{ vmrscs.split(',')[1] | trim }}"
     vmdsk: "{{ vmrscs.split(',')[2] | trim }}"
 
+- name: Prueba entrada 5.1 eco de recursos vmware Linux o Windows
+  debug:
+    msg:
+      - "{{ vmcpu | trim}}"
+      - "{{ vmmem | int * 1024 }}"
+      - "{{ vmdsk | int * 1024 }}"
+
 - name: Prueba salida 5.2 eco de recursos vmware Linux o Windows
   debug:
     msg: 
@@ -78,11 +85,6 @@
   debug:
     msg: 
       - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}-disk2.vmdk"
-
-
-
-
-
 
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
