@@ -56,11 +56,16 @@
       2,3,55
       {% endif %}
 
-- name: Prueba salida 5 eco de recursos vmware Linux o Windows
+- name: Prueba entrada 5.1 eco de recursos vmware Linux o Windows
+  set_fact:
+    vmcpu: "{{ vmrscs.split(',')[0] | trim }}"
+    vmmem: "{{ vmrscs.split(',')[1] | trim }}"
+    vmdsk: "{{ vmrscs.split(',')[2] | trim }}"
+
+- name: Prueba salida 5.2 eco de recursos vmware Linux o Windows
   debug:
     msg: 
       - "{{ vmrscs }}"
-
 
 - name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux o Windows
   debug:
@@ -73,6 +78,10 @@
   debug:
     msg: 
       - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}-disk2.vmdk"
+
+
+
+
 
 
 #- name: Prueba 1 agrupando eco de recursos
