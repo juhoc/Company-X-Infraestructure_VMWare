@@ -47,13 +47,13 @@
   set_fact:
     vmrscs: |
       {% if 'Small' in vmresources %}
-      1,1,55
+      1,1,60
       {% elif 'Medium' in vmresources %}
-      1,2,55
+      1,2,60
       {% elif 'Large' in vmresources %}
-      2,2,55
+      2,2,60
       {% elif 'Xlarge' in vmresources %}
-      2,3,55
+      2,3,60
       {% endif %}
 
 - name: Prueba entrada 5.1 eco de recursos vmware Linux o Windows
@@ -67,7 +67,7 @@
     msg:
       - "{{ vmcpu | trim}}"
       - "{{ vmmem | int * 1024 }}"
-      - "{{ vmdsk | int * 1024 }}"
+      - "{{ vmdsk }}"
 
 - name: Prueba salida 5.2 eco de recursos vmware Linux o Windows
   debug:
@@ -85,6 +85,11 @@
   debug:
     msg: 
       - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}-disk2.vmdk"
+
+- name: Prueba salida 8 eco de iniiar vmware Linux o Windows
+  debug:
+    msg: 
+      - "vmrun start {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}.vmx"
 
 #- name: Prueba 1 agrupando eco de recursos
 #  set_fact:
