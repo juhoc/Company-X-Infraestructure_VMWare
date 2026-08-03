@@ -65,6 +65,7 @@
 - name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux o Windows
   debug:
     msg: 
+      - "mkdir {{ vmsclones }}{{ vmosv }}/{{ vmosv }}"
       - "ovftool {{ vmsclones }}{{ vmosv }}/{{ vmosv }}.ovf {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}.vmx"
 
 
