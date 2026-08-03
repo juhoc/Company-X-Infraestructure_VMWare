@@ -62,10 +62,16 @@
       - "{{ vmrscs }}"
 
 
-- name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux O Windows
+- name: Prueba salida 6 eco de ruta de clonado ovf vmware Linux o Windows
   debug:
     msg: 
       - "ovftool {{ vmsclones }}{{ vmosv }}/{{ vmosv }}.ovf {{ vmscreate }}{{ vmos }}/{{ vmn }}.vwx"
+
+
+- name: Prueba salida 7 eco de ruta agregar disco vmware Linux o Windows
+  debug:
+    msg: 
+      - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/-disk2.vmdk"
 
 
 #- name: Prueba 1 agrupando eco de recursos
