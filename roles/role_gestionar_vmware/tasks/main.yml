@@ -18,7 +18,7 @@
 - set_fact:
     run_playbook: |
       {% if actions == 'Create_VMware_Machine' %}
-      ['create/newvm']
+      ['environment/envvm']
       {% elif actions == 'Test_vars_VMware_Machine' %}
       ['tests/varsvm']
       {% else %}
