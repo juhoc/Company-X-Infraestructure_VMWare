@@ -71,7 +71,7 @@
 - name: Prueba salida 7 eco de ruta agregar disco vmware Linux o Windows
   debug:
     msg: 
-      - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/-disk2.vmdk"
+      - "vmware-vdiskmanager -c -s 100GB -t 0 {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}-disk2.vmdk"
 
 
 #- name: Prueba 1 agrupando eco de recursos
