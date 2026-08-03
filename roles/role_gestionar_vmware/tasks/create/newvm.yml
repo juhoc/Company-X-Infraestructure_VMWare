@@ -1,1 +1,6 @@
 ---
+- block:
+    - name: Crear VM Tipo {{ vmos }} Version {{ vmosv }} de nombre {{ vmn }}
+      shell: |
+        mkdir {{ vmscreate }}{{ vmos }}/{{ vmn }}
+        ovftool {{ vmsclones }}{{ vmosv }}/{{ vmosv }}.ovf {{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}.vmx

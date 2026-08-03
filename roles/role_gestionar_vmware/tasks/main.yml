@@ -18,7 +18,7 @@
 - set_fact:
     run_playbook: |
       {% if actions == 'Create_VMware_Machine' %}
-      ['ambientar/vboxvm','mensajes/inicio/vboxvm','crear/vm/vboxvm','crear/clone/vboxvm','crear/disk/vboxvm','crear/net/vboxvm','prender/vboxvm','validar/vboxvm','mensajes/final/vboxvm','api/vboxvm','configurar/nombre/vboxvm']
+      ['create/newvm']
       {% elif actions == 'Test_vars_VMware_Machine' %}
       ['tests/varsvm']
       {% else %}

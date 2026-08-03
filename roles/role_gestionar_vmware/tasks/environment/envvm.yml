@@ -1,0 +1,54 @@
+---
+- block:
+    - name: Crear ecos antes de crear la VM - Tipo OS, Nombre, Red y Version OS.
+      set_fact:
+        vmos: "{{ platformvm | trim }}"
+        vmn: "{{ namevm | trim }}"
+        vmnet: "{{ networkvm | trim }}"
+        vmosv: "{{ osversionvm | trim }}"
+
+    - name: Crear ecos antes de crear la VM - Recursos Small, Medium, Large o Xlarge.
+      set_fact:
+        vmrscs: |
+          {% if 'Small' in vmresources %}
+          1,1,60
+          {% elif 'Medium' in vmresources %}
+          1,2,60
+          {% elif 'Large' in vmresources %}
+          2,2,60
+          {% elif 'Xlarge' in vmresources %}
+          2,3,60
+          {% endif %}
+
+    - name: Crear ecos antes de crear la VM - Recursos CPU, RAN y DISCO.
+      set_fact:
+        vmcpu: "{{ vmrscs.split(',')[0] | trim }}"
+        vmmem: "{{ vmrscs.split(',')[1] | trim }}"
+        vmdsk: "{{ vmrscs.split(',')[2] | trim }}"
+
+    - name: Crear ecos antes de crear la VM - Ambiente Prueba, Desarrollo Calidad o Produccio.
+      set_fact:
+        vmtier: |
+          {% if 'vt' in vmn %}
+          prueba
+          {% elif 'vd' in vmn %}
+          desarrollo
+          {% elif 'vc' in vmn %}
+          calidad
+          {% elif 'vlo' in vmn %}
+          liga oculta
+          {% else %}
+          produccion
+          {% endif %}
+        vmenv: |
+          {% if 'vt' in vmn %}
+          ts
+          {% elif 'vd' in vmn %}
+          ep
+          {% elif 'vc' in vmn %}
+          ep
+          {% elif 'vlo' in vmn %}
+          lo
+          {% else %}
+          pr
+          {% endif %}
