@@ -18,6 +18,8 @@
           - "'No_selecciono_ninguna_tarea' not in run_playbook"
         fail_msg: "run_playbook"
         success_msg: "Ha seleccionado la tarea: {{ run_playbook | replace('\n', '') }}"
+      run_once: true
+      delegate_to: localhost
     
     - name: Start the task {{ run_playbook }}
       include_tasks: "{{ action }}.yml"
