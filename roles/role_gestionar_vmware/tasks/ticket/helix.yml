@@ -8,7 +8,7 @@
       assert:
         that:
           - idhelix | string | regex_search('(CRQ|INC|REQ)[0-9]{12}')
-        fail_msg: "El ticket Helix no tiene el formato correcto"
-        success_msg: "El ticket Helix tiene el formato correcto"
+        fail_msg: "El ID Helix no tiene el formato correcto"
+        success_msg: "El ID Helix tiene el formato correcto"
   run_once: true
   delegate_to: localhost
