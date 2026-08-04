@@ -2,41 +2,25 @@
 - name: Tasks by blocks - ID Helix format validation
   block:
     - set_fact:
-        idhelix: "{{ idcrqinc | trim }}"
-#      run_once: true
-#      delegate_to: localhost
-
-    - name: Validando Formato de Cambio o Incidente
+        run_playbook: |
+          {% if actions == 'Create_VMware_Machine' %}
+          ['ticket/helix']
+          {% elif actions == 'Test_vars_VMware_Machine' %}
+          ['tests/varsvm']
+          {% else %}
+          ['No_selecciono_ninguna_tarea']
+          {% endif %}
+    
+    - name: Select Result
+      become: true
       assert:
         that:
-          - idhelix | string | regex_search('(CRQ|INC|REQ)[0-9]{12}')
-        fail_msg: "El CRQ, INC o REQ no cumplen con la condiciones del formato"
-        success_msg: "El CRQ, INC o REQ cumplen con las condiciones del formato"
-  run_once: true
-  delegate_to: localhost
-
-- set_fact:
-    run_playbook: |
-      {% if actions == 'Create_VMware_Machine' %}
-      ['environment/envvm']
-      {% elif actions == 'Test_vars_VMware_Machine' %}
-      ['tests/varsvm']
-      {% else %}
-      ['No_selecciono_ninguna_tarea']
-      {% endif %}
-
-- name: Select Result
-  become: true
-  assert:
-    that:
-      - "'No_selecciono_ninguna_tarea' not in run_playbook"
-    fail_msg: "run_playbook"
-    success_msg: "Ha seleccionado la tarea: {{ run_playbook | replace('\n', '') }}"
-  run_once: true
-  delegate_to: localhost
-
-- name: Start the task {{ run_playbook }}
-  include_tasks: "{{ action }}.yml"
-  loop: "{{ run_playbook }}"
-  loop_control:
-    loop_var: action
+          - "'No_selecciono_ninguna_tarea' not in run_playbook"
+        fail_msg: "run_playbook"
+        success_msg: "Ha seleccionado la tarea: {{ run_playbook | replace('\n', '') }}"
+    
+    - name: Start the task {{ run_playbook }}
+      include_tasks: "{{ action }}.yml"
+      loop: "{{ run_playbook }}"
+      loop_control:
+        loop_var: action
