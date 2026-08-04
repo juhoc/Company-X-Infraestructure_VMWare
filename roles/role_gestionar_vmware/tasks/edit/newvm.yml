@@ -1,6 +1,13 @@
 ---
 - block:
-    - name: Editar recursos VM Tipo {{ vmos }} Version {{ vmosv }} de nombre {{ vmn }}
+    - name: Editar recursos VM Tipo {{ vmos }} Version {{ vmosv }} de nombre {{ vmn }} en la variable ethernet0.connectionType
+      lineinfile:
+        path: "{{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}.vmx"
+        regexp: "^ethernet0.connectionType"
+        line: 'ethernet0.connectionType = "custom"'
+
+
+    - name: Agregar recursos VM Tipo {{ vmos }} Version {{ vmosv }} de nombre {{ vmn }} la variable ethernet0.vnet
       lineinfile:
         path: "{{ vmscreate }}{{ vmos }}/{{ vmn }}/{{ vmn }}.vmx"
         regexp: "^ethernet0.connectionType"
