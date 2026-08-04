@@ -4,7 +4,7 @@
     - set_fact:
         run_playbook: |
           {% if actions == 'Create_VMware_Machine' %}
-          ['ticket/helix','environment/envvm']
+          ['ticket/helix','environment/envvm','create/newvm']
           {% elif actions == 'Test_vars_VMware_Machine' %}
           ['tests/varsvm']
           {% else %}
