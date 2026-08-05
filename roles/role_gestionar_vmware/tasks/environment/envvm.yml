@@ -23,7 +23,7 @@
     - name: Crear ecos antes de crear la VM - Recursos CPU, RAN y DISCO.
       set_fact:
         vmcpu: "{{ vmrscs.split(',')[0] | trim }}"
-        vmmem: "{{ vmrscs.split(',')[1] |  | int * 1024 | trim }}"
+        vmmem: "{{ vmrscs.split(',')[1] |  | int * 1024 }}"
         vmdsk: "{{ vmrscs.split(',')[2] | trim }}"
 
     - name: Crear ecos antes de crear la VM - Ambiente Prueba, Desarrollo Calidad o Produccio.
