@@ -1,5 +1,5 @@
 ---
-- name: PlayBook Maestro - Pruebas todo tipo
+- name: PlayBook Maestro - Despliegue de maquinas virtuales VMware
   hosts: all
   gather_facts: false
 #  strategy: serial
